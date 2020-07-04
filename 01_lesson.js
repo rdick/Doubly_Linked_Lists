@@ -105,6 +105,39 @@ class DoublyLinkedList {
         }
         return false
     }
+    insert(index, val) {
+        if (index < 0 || index > this.length) return false
+        if (index === 0) return !!this.unshift(val)
+        if (index === this.length) return !!this.push(val)
+
+        let prevNode = this.get(index - 1)
+        let nextNode = prevNode.next
+        let newNode = new Node(val)
+
+        prevNode.next = newNode, newNode.previous = prevNode
+
+        nextNode.previous = newNode, newNode.next = nextNode
+
+        this.length++
+        return true
+    }
+    remove(index) {
+        if (index < 0 || index > this.length) return undefined
+        if (index === 0) return this.shift()
+        if (index === this.length) return this.pop()
+
+        let removedNode = this.get(index)
+        let prevNode = removedNode.previous
+        let nextNode = removedNode.next
+
+
+        prevNode.next = nextNode, nextNode.previous = prevNode
+
+        removedNode.next = null, removedNode.previous = null
+
+        this.length--
+        return removedNode
+    }
 }
 
 let list = new DoublyLinkedList
@@ -116,4 +149,6 @@ list.shift()
 list.unshift(0)
 list.get(2)
 list.set(2, 4)
+list.insert(1, 'dog?')
+list.remove(1)
 // list.pop()
