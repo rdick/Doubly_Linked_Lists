@@ -42,7 +42,37 @@ class DoublyLinkedList {
         this.length--
         return poppedNode
     }
+    shift() {
+        if (this.length === 0) return undefined
 
+        let shiftedNode = this.head
+        if (this.length === 1) {
+            this.head = null
+            this.tail = null
+        } else {
+            this.head = shiftedNode.next
+            shiftedNode.next = null
+            this.head.previous = null
+        }
+
+        this.length--
+        return shiftedNode
+    }
+    unshift(val) {
+        let newNode = new Node(val)
+
+        if (this.length === 0) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            this.head.previous = newNode
+            newNode.next = this.head
+            this.head = newNode
+        }
+        this.length++
+        return this
+
+    }
 }
 
 let list = new DoublyLinkedList
@@ -50,4 +80,6 @@ let list = new DoublyLinkedList
 list.push(1)
 list.push(2)
 list.push(3)
-list.pop()
+list.shift()
+list.unshift(0)
+// list.pop()
