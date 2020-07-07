@@ -145,7 +145,6 @@ var doublyLinkedList = new DoublyLinkedList
 doublyLinkedList.push(5)
 doublyLinkedList.push(4)
 doublyLinkedList.push(3)
-// // doublyLinkedList.insert(1, 4.5)
-// // doublyLinkedList.set(1, 4.2)
-// // doublyLinkedList.remove(1)
 doublyLinkedList.reverse()
+
+
