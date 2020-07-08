@@ -1,53 +1,36 @@
 
-let sub = ''
 
+let data = 'rithmschool'
 
-let data = []
+let prev = 0
+let next = 0
 let count = 0
-let previous = 0,
-    after = 0
 let max = 0
 
-while (sub.length > after) {
-    if (data[sub[after]] === undefined || previous > data[sub[after]]) {
+let hash = []
 
+while (data.length > next) {
+    if (hash[data[next]] === undefined || hash[data[next]] < prev) {
+
+        hash[data[next]] = next
+
+        next++
         count++
-        data[sub[after]] = after
-        after++
+
+        if (count > max) max = count
 
     } else {
 
-        previous = data[sub[after]] + 1
-        data[sub[after]] = after
-        after++
-        count = (after - previous)
+        prev = hash[data[next]] + 1
+        hash[data[next]] = next
+
+        next++
+        count = next - prev
+
 
     }
-
-
-    if (count > max) max = count
 }
 console.log(max)
+// console.log(1, data[next], count)
 
-
-
-// while (sub.length > j) {
-//     set.add(sub[j])
-//     if (set.size !== (j - i + 1)) {
-
-//         if (count > max) max = count
-//         console.log(max, sub[j])
-
-//         set.delete(sub[j])
-
-//         i++
-//         set.add(sub)
-//         count--
-//     } else {
-//         console.log(sub[j])
-//         count++
-//         j++
-//     }
-// }
-// if (count > max) max = count
-// console.log(max)
+// console.log(2, data[next], count)
